@@ -85,7 +85,10 @@ function LandingPage() {
         {/* Hero */}
         <section
           className="relative overflow-hidden"
-          style={{ backgroundColor: DHL_YELLOW }}
+          style={{
+            background:
+              "linear-gradient(135deg, #FFCC00 0%, #FFE066 45%, #FFFFFF 100%)",
+          }}
         >
           {/* Decorative red lines (DHL signature) */}
           <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
