@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, ShieldCheck, Workflow, Brain, ArrowRight } from "lucide-react";
+import { Sparkles, ShieldCheck, Workflow, Brain, ArrowRight, Zap } from "lucide-react";
 import dhlLogo from "@/assets/dhl-logo.png";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/api";
@@ -17,6 +17,9 @@ export const Route = createFileRoute("/")({
     ],
   }),
 });
+
+const DHL_RED = "#D40511";
+const DHL_YELLOW = "#FFCC00";
 
 function LandingPage() {
   const authed = auth.isAuthed();
@@ -41,29 +44,36 @@ function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="border-b border-border">
+      {/* Top DHL yellow stripe */}
+      <div className="h-2 w-full" style={{ backgroundColor: DHL_YELLOW }} />
+
+      <header className="border-b border-border bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <img
               src={dhlLogo}
               alt="DHL"
               width={1024}
               height={1024}
-              className="h-8 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
-            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
+            <div className="hidden h-10 w-px bg-border sm:block" />
+            <span
+              className="hidden text-sm font-semibold tracking-wide sm:inline"
+              style={{ color: DHL_RED }}
+            >
               Incident Reporting & Resolution
             </span>
           </div>
           <div className="flex items-center gap-2">
             {authed ? (
-              <Button asChild>
+              <Button asChild className="bg-[#D40511] text-white hover:bg-[#b80410]">
                 <Link to="/dashboard">
                   Open Dashboard <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
             ) : (
-              <Button asChild>
+              <Button asChild className="bg-[#D40511] text-white hover:bg-[#b80410]">
                 <Link to="/login">Sign in</Link>
               </Button>
             )}
@@ -72,47 +82,166 @@ function LandingPage() {
       </header>
 
       <main>
-        <section className="mx-auto max-w-6xl px-6 pt-20 pb-16 text-center">
-          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
-            <Sparkles className="h-3.5 w-3.5 text-primary" />
-            Powered by AI
+        {/* Hero */}
+        <section
+          className="relative overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, #FFCC00 0%, #FFE066 45%, #FFFFFF 100%)",
+          }}
+        >
+          {/* Decorative red lines (DHL signature) */}
+          <div className="pointer-events-none absolute inset-0 opacity-[0.07]">
+            <div
+              className="absolute -left-20 top-10 h-2 w-[500px] rotate-[-8deg]"
+              style={{ backgroundColor: DHL_RED }}
+            />
+            <div
+              className="absolute -left-20 top-20 h-2 w-[400px] rotate-[-8deg]"
+              style={{ backgroundColor: DHL_RED }}
+            />
+            <div
+              className="absolute right-0 bottom-10 h-2 w-[500px] rotate-[-8deg]"
+              style={{ backgroundColor: DHL_RED }}
+            />
           </div>
-          <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">
-            AI‑Enhanced Incident Reporting & Resolution System
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            A smarter way for DHL teams to capture, classify and resolve operational incidents —
-            from late deliveries to damaged parcels — across every channel.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg">
-              <Link to={authed ? "/dashboard" : "/login"}>
-                Get started <ArrowRight className="ml-1 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link to="/incidents/create">Report an incident</Link>
-            </Button>
+
+          <div className="relative mx-auto max-w-6xl px-6 py-24 text-center">
+            <img
+              src={dhlLogo}
+              alt="DHL"
+              width={1024}
+              height={1024}
+              className="mx-auto mb-8 h-24 w-auto object-contain drop-shadow-lg sm:h-32"
+            />
+
+            <div
+              className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
+              style={{
+                borderColor: DHL_RED,
+                color: DHL_RED,
+                backgroundColor: "rgba(255,255,255,0.85)",
+              }}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              Powered by AI
+            </div>
+
+            <h1
+              className="mx-auto max-w-4xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl"
+              style={{ color: DHL_RED }}
+            >
+              AI‑Enhanced Incident Reporting & Resolution System
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-800 sm:text-lg">
+              A smarter way for DHL teams to capture, classify and resolve operational
+              incidents — from late deliveries to damaged parcels — across every channel.
+            </p>
+
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#D40511] text-white shadow-lg shadow-red-900/20 hover:bg-[#b80410]"
+              >
+                <Link to={authed ? "/dashboard" : "/login"}>
+                  Get started <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-[#D40511] bg-white text-[#D40511] hover:bg-[#FFF7CC]"
+              >
+                <Link to="/incidents/create">Report an incident</Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Bottom red bar of hero */}
+          <div className="h-1.5 w-full" style={{ backgroundColor: DHL_RED }} />
+        </section>
+
+        {/* Features */}
+        <section className="mx-auto max-w-6xl px-6 py-20">
+          <div className="mb-12 text-center">
+            <span
+              className="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider text-white"
+              style={{ backgroundColor: DHL_RED }}
+            >
+              What it does
+            </span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight">
+              Everything you need to stay ahead of incidents
+            </h2>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-3">
+            {features.map((f) => (
+              <div
+                key={f.title}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div
+                  className="absolute inset-x-0 top-0 h-1"
+                  style={{ backgroundColor: DHL_YELLOW }}
+                />
+                <div
+                  className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-md"
+                  style={{ backgroundColor: DHL_RED }}
+                >
+                  <f.icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-lg font-bold">{f.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-6xl gap-6 px-6 pb-24 sm:grid-cols-3">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="rounded-xl border border-border bg-card p-6 shadow-sm"
-            >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <f.icon className="h-5 w-5" />
+        {/* CTA band */}
+        <section
+          className="relative overflow-hidden"
+          style={{ backgroundColor: DHL_RED }}
+        >
+          <div
+            className="absolute -bottom-1 left-0 right-0 h-2"
+            style={{ backgroundColor: DHL_YELLOW }}
+          />
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 py-14 text-center sm:flex-row sm:text-left">
+            <div className="flex items-center gap-4">
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-xl"
+                style={{ backgroundColor: DHL_YELLOW, color: DHL_RED }}
+              >
+                <Zap className="h-6 w-6" />
               </div>
-              <h3 className="text-base font-semibold">{f.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{f.desc}</p>
+              <div>
+                <h3 className="text-xl font-bold text-white">
+                  Ready to resolve incidents faster?
+                </h3>
+                <p className="text-sm text-white/85">
+                  Sign in and let AI handle the heavy lifting.
+                </p>
+              </div>
             </div>
-          ))}
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-[#D40511] hover:bg-[#FFF7CC]"
+            >
+              <Link to={authed ? "/dashboard" : "/login"}>
+                {authed ? "Open Dashboard" : "Sign in"}{" "}
+                <ArrowRight className="ml-1 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </section>
       </main>
 
-      <footer className="border-t border-border">
+      <footer className="border-t border-border bg-white">
         <div className="mx-auto max-w-6xl px-6 py-6 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} DHL — Internal tool
         </div>
