@@ -73,9 +73,18 @@ function LandingPage() {
                 </Link>
               </Button>
             ) : (
-              <Button asChild className="bg-[#D40511] text-white hover:bg-[#b80410]">
-                <Link to="/login">Sign in</Link>
-              </Button>
+              <>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-[#D40511] bg-white text-[#D40511] hover:bg-[#FFF7CC]"
+                >
+                  <Link to="/login">Log in</Link>
+                </Button>
+                <Button asChild className="bg-[#D40511] text-white hover:bg-[#b80410]">
+                  <Link to="/login">Sign in</Link>
+                </Button>
+              </>
             )}
           </div>
         </div>
