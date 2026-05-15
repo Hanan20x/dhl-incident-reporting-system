@@ -83,46 +83,24 @@ function LandingPage() {
 
       <main>
         {/* Hero */}
-        <section
-          className="relative overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, #FFCC00 0%, #FFE066 45%, #FFFFFF 100%)",
-          }}
-        >
-          {/* Decorative red lines (DHL signature) */}
-          <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
-            <div
-              className="absolute -left-20 top-10 h-2 w-[500px] rotate-[-8deg]"
+        <section className="relative overflow-hidden bg-white">
+          <div className="relative mx-auto max-w-5xl px-6 py-24 text-center sm:py-32">
+            <span
+              className="inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white"
               style={{ backgroundColor: DHL_RED }}
-            />
-            <div
-              className="absolute -left-20 top-20 h-2 w-[400px] rotate-[-8deg]"
-              style={{ backgroundColor: DHL_RED }}
-            />
-            <div
-              className="absolute right-0 bottom-10 h-2 w-[500px] rotate-[-8deg]"
-              style={{ backgroundColor: DHL_RED }}
-            />
-          </div>
-
-          <div className="relative mx-auto max-w-6xl px-6 py-24 text-center">
-            <img
-              src={dhlLogo}
-              alt="DHL"
-              width={1536}
-              height={1024}
-              className="mx-auto mb-10 h-28 w-auto object-contain sm:h-36"
-            />
+            >
+              Internal Tool
+            </span>
 
             <h1
-              className="mx-auto max-w-4xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl"
-              style={{ color: DHL_RED }}
+              className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold leading-[1.05] tracking-tight text-neutral-900 sm:text-6xl"
             >
-              AI Enhanced Incident Reporting &amp; Resolution System
+              AI Enhanced Incident{" "}
+              <span style={{ color: DHL_RED }}>Reporting &amp; Resolution</span>{" "}
+              System
             </h1>
 
-            <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-800 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-600 sm:text-lg">
               A smarter way for DHL teams to capture, classify and resolve operational
               incidents across every channel, from late deliveries to damaged parcels.
             </p>
@@ -131,7 +109,7 @@ function LandingPage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-[#D40511] text-white shadow-lg shadow-red-900/20 hover:bg-[#b80410]"
+                className="bg-[#D40511] text-white hover:bg-[#b80410]"
               >
                 <Link to={authed ? "/dashboard" : "/login"}>
                   Get started <ArrowRight className="ml-1 h-4 w-4" />
@@ -141,15 +119,15 @@ function LandingPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-[#D40511] bg-white text-[#D40511] hover:bg-[#FFF7CC]"
+                className="border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50"
               >
                 <Link to="/incidents/create">Report an incident</Link>
               </Button>
             </div>
           </div>
 
-          {/* Bottom red bar of hero */}
-          <div className="h-1.5 w-full" style={{ backgroundColor: DHL_RED }} />
+          {/* Subtle yellow accent bar */}
+          <div className="h-1 w-full" style={{ backgroundColor: DHL_YELLOW }} />
         </section>
 
         {/* Features */}
