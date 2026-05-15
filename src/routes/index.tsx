@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, ShieldCheck, Workflow, Brain, ArrowRight, Zap } from "lucide-react";
+import { ShieldCheck, Workflow, Brain, ArrowRight, Zap } from "lucide-react";
 import dhlLogo from "@/assets/dhl-logo.png";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/api";
@@ -85,13 +85,10 @@ function LandingPage() {
         {/* Hero */}
         <section
           className="relative overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, #FFCC00 0%, #FFE066 45%, #FFFFFF 100%)",
-          }}
+          style={{ backgroundColor: DHL_YELLOW }}
         >
           {/* Decorative red lines (DHL signature) */}
-          <div className="pointer-events-none absolute inset-0 opacity-[0.07]">
+          <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
             <div
               className="absolute -left-20 top-10 h-2 w-[500px] rotate-[-8deg]"
               style={{ backgroundColor: DHL_RED }}
@@ -110,33 +107,21 @@ function LandingPage() {
             <img
               src={dhlLogo}
               alt="DHL"
-              width={1024}
+              width={1536}
               height={1024}
-              className="mx-auto mb-8 h-24 w-auto object-contain drop-shadow-lg sm:h-32"
+              className="mx-auto mb-10 h-28 w-auto object-contain sm:h-36"
             />
-
-            <div
-              className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
-              style={{
-                borderColor: DHL_RED,
-                color: DHL_RED,
-                backgroundColor: "rgba(255,255,255,0.85)",
-              }}
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              Powered by AI
-            </div>
 
             <h1
               className="mx-auto max-w-4xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl"
               style={{ color: DHL_RED }}
             >
-              AI‑Enhanced Incident Reporting & Resolution System
+              AI Enhanced Incident Reporting &amp; Resolution System
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-base text-neutral-800 sm:text-lg">
               A smarter way for DHL teams to capture, classify and resolve operational
-              incidents — from late deliveries to damaged parcels — across every channel.
+              incidents across every channel, from late deliveries to damaged parcels.
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-3">
