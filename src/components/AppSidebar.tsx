@@ -41,7 +41,9 @@ export function AppSidebar() {
             loading="lazy"
             className="h-8 w-auto rounded-sm object-contain"
           />
-          <span className="text-xs text-muted-foreground">Incident System</span>
+          <span className="text-xs leading-tight text-muted-foreground">
+            AI‑Enhanced Incident Reporting & Resolution
+          </span>
         </div>
       </SidebarHeader>
       <SidebarContent>
