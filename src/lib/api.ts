@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8000/api";
+const API_BASE = "https://splotchy-recast-vest.ngrok-free.dev/api";
 const TOKEN_KEY = "dhl_token";
 
 export const auth = {
