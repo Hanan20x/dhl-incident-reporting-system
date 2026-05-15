@@ -176,7 +176,34 @@ function LandingPage() {
           </div>
         </section>
 
+        {/* CTA band */}
+        <section
+          className="relative overflow-hidden"
+          style={{ backgroundColor: DHL_RED }}
+        >
+          <div
+            className="absolute -bottom-1 left-0 right-0 h-2"
+            style={{ backgroundColor: DHL_YELLOW }}
+          />
+          <div className="mx-auto flex max-w-6xl items-center gap-4 px-6 py-14 text-center sm:text-left">
+            <div
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+              style={{ backgroundColor: DHL_YELLOW, color: DHL_RED }}
+            >
+              <Zap className="h-6 w-6" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white">
+                Ready to resolve incidents faster?
+              </h3>
+              <p className="text-sm text-white/85">
+                Sign in and let AI handle the heavy lifting.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
+
 
       <footer className="border-t border-border bg-white">
         <div className="mx-auto max-w-6xl px-6 py-6 text-center text-xs text-muted-foreground">
