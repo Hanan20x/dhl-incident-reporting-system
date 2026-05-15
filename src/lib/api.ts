@@ -16,6 +16,7 @@ async function request<T = any>(
   const token = auth.getToken();
   const headers: Record<string, string> = {
     Accept: "application/json",
+    "ngrok-skip-browser-warning": "true",
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...((options.headers as Record<string, string>) || {}),
