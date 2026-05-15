@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
-import { Package, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import dhlLogo from "@/assets/dhl-logo.png";
 import { api, auth } from "@/lib/api";
 import { toast } from "sonner";
 
@@ -48,15 +49,18 @@ function LoginPage() {
       </div>
 
       <Card className="w-full max-w-md p-8 shadow-xl">
-        <div className="flex flex-col items-center mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Package className="h-7 w-7" />
-            </div>
-            <span className="text-3xl font-bold tracking-wider text-primary">DHL</span>
-          </div>
-          <h1 className="text-xl font-semibold text-foreground">Incident Reporting</h1>
-          <p className="text-sm text-muted-foreground mt-1">Sign in to your account</p>
+        <div className="flex flex-col items-center mb-8 text-center">
+          <img
+            src={dhlLogo}
+            alt="DHL"
+            width={1024}
+            height={1024}
+            className="h-14 w-auto object-contain mb-4"
+          />
+          <h1 className="text-lg font-semibold text-foreground leading-tight">
+            AI Enhanced Incident Reporting &amp; Resolution System
+          </h1>
+          <p className="text-sm text-muted-foreground mt-2">Sign in to your account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
