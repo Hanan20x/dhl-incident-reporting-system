@@ -83,7 +83,7 @@ function LandingPage() {
 
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden bg-white">
+        <section className="relative overflow-hidden" style={{ backgroundColor: "#FFFBEB" }}>
           <div className="relative mx-auto max-w-5xl px-6 py-24 text-center sm:py-32">
             <span
               className="inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white"
