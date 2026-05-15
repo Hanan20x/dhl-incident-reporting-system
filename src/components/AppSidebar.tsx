@@ -1,5 +1,6 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, PlusCircle, Building2, LogOut, Package } from "lucide-react";
+import { LayoutDashboard, PlusCircle, Building2, LogOut } from "lucide-react";
+import dhlLogo from "@/assets/dhl-logo.png";
 import {
   Sidebar,
   SidebarContent,
@@ -32,13 +33,15 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
-            <Package className="h-5 w-5" />
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm font-bold tracking-wide text-primary">DHL</span>
-            <span className="text-xs text-muted-foreground">Incident System</span>
-          </div>
+          <img
+            src={dhlLogo}
+            alt="DHL"
+            width={1024}
+            height={1024}
+            loading="lazy"
+            className="h-8 w-auto rounded-sm object-contain"
+          />
+          <span className="text-xs text-muted-foreground">Incident System</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
