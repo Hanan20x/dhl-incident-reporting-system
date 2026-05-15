@@ -79,36 +79,7 @@ function DetailPage() {
     setConflictLoading(true);
     setConflictResult(null);
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": "proxy-handled",
-          "anthropic-version": "2023-06-01"
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1024,
-          messages: [{
-            role: "user",
-            content: `You are a DHL incident analyst. Given this incident description, identify if there are any conflicting information, missing details, or outdated references. Return a JSON with:
-  {
-    "has_conflicts": boolean,
-    "conflict_summary": "string",
-    "missing_fields": ["array of strings"],
-    "recommendations": ["array of strings"]
-  }
-  Description: ${incident.description}
-  Return ONLY valid JSON, no other text.`
-          }]
-        })
-      });
-      
-      if (!res.ok) throw new Error("API request failed");
-      const data = await res.json();
-      
-      const content = data.content[0].text;
-      const parsed = JSON.parse(content.replace(/```json|```/g, '').trim());
+      const parsed = await api.checkConflicts(incident.title, incident.description);
       setConflictResult(parsed);
       toast.success("Analysis complete");
     } catch (err: any) {

@@ -54,6 +54,16 @@ export const api = {
       body: JSON.stringify({ status }),
     }),
   listDepartments: () => request<any[]>("/departments"),
+  analyzeIncident: (content: string) =>
+    request<any>("/ai/analyze", {
+      method: "POST",
+      body: JSON.stringify({ content }),
+    }),
+  checkConflicts: (title: string, description: string) =>
+    request<any>("/ai/conflict-check", {
+      method: "POST",
+      body: JSON.stringify({ title, description }),
+    }),
 };
 
 export type Incident = {

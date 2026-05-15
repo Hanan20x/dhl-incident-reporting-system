@@ -40,39 +40,8 @@ function AIDraftBuilderPage() {
     }
     setLoading(true);
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": "proxy-handled",
-          "anthropic-version": "2023-06-01"
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1024,
-          messages: [{
-            role: "user",
-            content: `You are a DHL incident analyst. Analyze the raw incident text and return a JSON object with these exact fields:
-   {
-     "title": "string (concise incident title, max 10 words)",
-     "summary": "string (2-3 sentence summary)",
-     "type": "one of [late_delivery, address_issue, damaged_parcel, system_error, customer_complaint]",
-     "source": "one of [email, telegram, teams, phone, image, handwritten]",
-     "priority": "one of [low, medium, high, critical]",
-     "tags": ["array of 3-5 relevant tags"],
-     "suggested_steps": ["array of 3-5 suggested resolution steps"]
-   }
-   Return ONLY valid JSON, no other text.
-   Raw Text: ${rawText}`
-          }]
-        })
-      });
+      const parsed = await api.analyzeIncident(rawText);
       
-      if (!res.ok) throw new Error("API request failed");
-      const data = await res.json();
-      const content = data.content[0].text;
-      
-      const parsed = JSON.parse(content.replace(/```json|```/g, '').trim());
       setForm({
         title: parsed.title || "",
         summary: parsed.summary || "",
