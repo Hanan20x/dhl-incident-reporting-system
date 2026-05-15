@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*');
+        $middleware->redirectGuestsTo(fn() => response()->json(['message' => 'Unauthenticated'], 401));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

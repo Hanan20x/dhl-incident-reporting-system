@@ -1,0 +1,6 @@
+{
+  "Name": "DHL_Incident_RPA",
+  "ProjectType": "Process",
+  "Description": "",
+  "MainFile": "Main.xaml"
+}

@@ -1,0 +1,460 @@
+﻿<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="UiPathEventConnector" Type="InArgument(x:String)" />
+    <x:Property Name="UiPathEvent" Type="InArgument(x:String)" />
+    <x:Property Name="UiPathEventObjectType" Type="InArgument(x:String)" />
+    <x:Property Name="UiPathEventObjectId" Type="InArgument(x:String)" />
+    <x:Property Name="UiPathAdditionalEventData" Type="InArgument(x:String)" />
+    <x:Property Name="smtpHost" Type="InArgument(x:String)" />
+    <x:Property Name="smtpPort" Type="InArgument(x:Int32)" />
+    <x:Property Name="senderEmail" Type="InArgument(x:String)" />
+    <x:Property Name="recipientEmail" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Main.UiPathEventConnector>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.UiPathEventConnector>
+  <this:Main.UiPathEvent>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.UiPathEvent>
+  <this:Main.UiPathEventObjectType>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.UiPathEventObjectType>
+  <this:Main.UiPathEventObjectId>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.UiPathEventObjectId>
+  <this:Main.UiPathAdditionalEventData>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.UiPathAdditionalEventData>
+  <this:Main.smtpHost>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.smtpHost>
+  <this:Main.smtpPort>
+    <InArgument x:TypeArguments="x:Int32" />
+  </this:Main.smtpPort>
+  <this:Main.senderEmail>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.senderEmail>
+  <this:Main.recipientEmail>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Main.recipientEmail>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Web.Activities.JSON.Models</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>Newtonsoft.Json.Serialization</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.Mail.Activities.Enums</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="613,990" sap2010:WorkflowViewState.IdRef="Sequence_Main">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="retryCount" />
+      <Variable x:TypeArguments="x:String" Name="loginBody" />
+      <Variable x:TypeArguments="x:String" Name="requestBody" />
+      <Variable x:TypeArguments="x:Boolean" Name="incidentSuccess" />
+      <Variable x:TypeArguments="x:Int32" Name="createdCount" />
+      <Variable x:TypeArguments="x:Int32" Name="skippedCount" />
+      <Variable x:TypeArguments="x:Int32" Name="failedCount" />
+      <Variable x:TypeArguments="x:String" Name="responseContent" />
+      <Variable x:TypeArguments="x:Int32" Name="loginStatusCode" />
+      <Variable x:TypeArguments="njl:JObject" Name="jsonResponse" />
+      <Variable x:TypeArguments="x:String" Name="authToken" />
+      <Variable x:TypeArguments="si:DirectoryInfo" Name="dhlIncidentsFolder" />
+      <Variable x:TypeArguments="x:Boolean" Name="logExists" />
+      <Variable x:TypeArguments="x:String" Name="processedLog" />
+      <Variable x:TypeArguments="x:Boolean" Name="isRecentlyProcessed" />
+      <Variable x:TypeArguments="x:String" Name="fileContent" />
+      <Variable x:TypeArguments="x:Int32" Name="incidentStatusCode" />
+      <Variable x:TypeArguments="x:String" Name="emailBody" />
+      <Variable x:TypeArguments="si:FileInfo" Name="currentFile" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ManualTrigger Result="{x:Null}" DisplayName="The process is started manually." sap:VirtualizedContainerService.HintSize="450,78.5" sap2010:WorkflowViewState.IdRef="ManualTrigger_1" />
+    <TryCatch DisplayName="Handle the login process and potential errors." sap:VirtualizedContainerService.HintSize="450,201" sap2010:WorkflowViewState.IdRef="TryCatch_Login">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_Login">
+          <Assign DisplayName="Assign loginBody with serialized JSON." sap2010:WorkflowViewState.IdRef="Assign_LoginBody">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[loginBody]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[Newtonsoft.Json.JsonConvert.SerializeObject(New Dictionary(Of String, String)() From {
+    {"email", "rpa@dhl.com"},
+    {"password", "password123"}
+})]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" AuthenticationType="None" Body="[loginBody]" BodyFormat="application/json" DisplayName="Send a POST request to the login API." EnableSSLVerification="True" EndPoint="http://127.0.0.1:8000/api/login" sap2010:WorkflowViewState.IdRef="HttpClient_Login" Method="POST" Result="[responseContent]" StatusCode="[loginStatusCode]" TimeoutMS="6000">
+            <ui:HttpClient.Attachments>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+            </ui:HttpClient.Attachments>
+            <ui:HttpClient.Cookies>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+            </ui:HttpClient.Cookies>
+            <ui:HttpClient.Headers>
+              <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json</InArgument>
+            </ui:HttpClient.Headers>
+            <ui:HttpClient.Parameters>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+            </ui:HttpClient.Parameters>
+            <ui:HttpClient.UrlSegments>
+              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+            </ui:HttpClient.UrlSegments>
+          </ui:HttpClient>
+          <ui:LogMessage DisplayName="Log the raw response from the login API." sap2010:WorkflowViewState.IdRef="LogMessage_LoginResponse" Level="Info" Message="[String.Format(&quot;Login API raw response: {0}&quot;, responseContent)]" />
+          <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize the JSON response to extract the token." sap2010:WorkflowViewState.IdRef="DeserializeJson_Login" JsonObject="[jsonResponse]" JsonString="[responseContent]" />
+          <Assign DisplayName="Store the authentication token in a variable." sap2010:WorkflowViewState.IdRef="Assign_AuthToken">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[authToken]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[jsonResponse("token").ToString()]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch_Login">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Catch - Exception" sap:VirtualizedContainerService.HintSize="344.5,20" sap2010:WorkflowViewState.IdRef="Sequence_LoginCatch">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Finally" sap2010:WorkflowViewState.IdRef="Sequence_1" />
+      </TryCatch.Finally>
+    </TryCatch>
+    <ui:GetFolderInfoX DisplayName="Get all files from the C:\DHL_Incidents folder." FolderPath="C:\DHL_Incidents" sap:VirtualizedContainerService.HintSize="450,168" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_1" Output="[dhlIncidentsFolder]" ThrowIfNotExists="False" />
+    <ui:LogMessage DisplayName="Log total number of files found." sap:VirtualizedContainerService.HintSize="450,176" sap2010:WorkflowViewState.IdRef="LogMessage_FileCount" Level="Info" Message="[String.Format(&quot;DHL Incidents folder found. Total files to evaluate: {0}&quot;, dhlIncidentsFolder.GetFiles().Where(Function(f) Not Equals(f.Name, &quot;processed_log.txt&quot;) AndAlso Not Equals(f.Name, &quot;automation_log.txt&quot;)).Count())]" />
+    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="{x:Null}" DisplayName="Iterate through each file in the DHL_Incidents folder." sap:VirtualizedContainerService.HintSize="450,151.5" sap2010:WorkflowViewState.IdRef="ForEach_Files" Values="[dhlIncidentsFolder.GetFiles().Where(Function(f) Not Equals(f.Name, &quot;processed_log.txt&quot;) AndAlso Not Equals(f.Name, &quot;automation_log.txt&quot;)).ToArray()]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="si:FileInfo">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="currentFile" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_ForEachBody">
+            <TryCatch DisplayName="Handle processing for each file with error catching." sap2010:WorkflowViewState.IdRef="TryCatch_FileProcessing">
+              <TryCatch.Try>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_FileTry">
+                  <ui:FileExistsX DisplayName="Check if the processed log file exists." Exists="[logExists]" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="C:\DHL_Incidents\processed_log.txt" />
+                  <If Condition="[Not logExists]" DisplayName="If the log file does not exist, create it." sap2010:WorkflowViewState.IdRef="If_CreateLog">
+                    <If.Then>
+                      <ui:CreateFile Output="{x:Null}" PathResource="{x:Null}" DisplayName="Create the processed_log.txt file." sap2010:WorkflowViewState.IdRef="CreateFile_1" Name="processed_log.txt" Path="C:\DHL_Incidents" />
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_LogExistsElse" />
+                    </If.Else>
+                  </If>
+                  <ui:ReadTextFile File="{x:Null}" Content="[processedLog]" DisplayName="Read the content of the processed log file." FileName="C:\DHL_Incidents\processed_log.txt" sap2010:WorkflowViewState.IdRef="ReadTextFile_ProcessedLog" />
+                  <Assign DisplayName="Check if the file was processed in the last 14 days." sap2010:WorkflowViewState.IdRef="Assign_IsRecentlyProcessed">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[isRecentlyProcessed]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">[processedLog.Split({Environment.NewLine}, StringSplitOptions.None).Any(Function(line) line.StartsWith(currentFile.Name &amp; "|") AndAlso line.Contains("|") AndAlso Not String.IsNullOrWhiteSpace(line.Split("|"c)(1).Trim()) AndAlso Date.Parse(line.Split("|"c)(1).Trim()) &gt; Date.Now.AddDays(-14))]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If Condition="[Not isRecentlyProcessed]" DisplayName="If the file was not recently processed, process it." sap2010:WorkflowViewState.IdRef="If_ProcessOrSkip">
+                    <If.Then>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_ProcessBranch">
+                        <ui:ReadTextFile File="{x:Null}" Content="[fileContent]" DisplayName="Read the content of the current file." FileName="[currentFile.FullName]" sap2010:WorkflowViewState.IdRef="ReadTextFile_FileContent" />
+                        <Assign DisplayName="Initialize retryCount to 0." sap2010:WorkflowViewState.IdRef="Assign_RetryCount">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[retryCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Initialize incidentSuccess to False." sap2010:WorkflowViewState.IdRef="Assign_IncidentSuccess">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">[incidentSuccess]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">[False]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[retryCount &lt; 3 AndAlso incidentSuccess = False]" DisplayName="Retry POST request to incidents API up to 3 times." sap2010:WorkflowViewState.IdRef="While_Retry">
+                          <ui:InterruptibleWhile.Body>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_WhileBody">
+                              <TryCatch DisplayName="Try to send POST request to incidents API." sap2010:WorkflowViewState.IdRef="TryCatch_Post">
+                                <TryCatch.Try>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_PostTry">
+                                    <Assign DisplayName="Assign requestBody with serialized JSON." sap2010:WorkflowViewState.IdRef="Assign_RequestBody">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[requestBody]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String" xml:space="preserve">[Newtonsoft.Json.JsonConvert.SerializeObject(New Dictionary(Of String, String)() From {
+    {"title", currentFile.Name},
+    {"description", fileContent},
+    {"type", "customer_complaint"},
+    {"source", "email"},
+    {"priority", "medium"}
+})]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[requestBody]" BodyFormat="application/json" DisplayName="Send a POST request to the incidents API." EnableSSLVerification="True" EndPoint="http://localhost:8000/api/incidents" sap2010:WorkflowViewState.IdRef="HttpClient_Incidents" Method="POST" Result="[responseContent]" StatusCode="[incidentStatusCode]" TimeoutMS="6000">
+                                      <ui:HttpClient.Attachments>
+                                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                      </ui:HttpClient.Attachments>
+                                      <ui:HttpClient.Cookies>
+                                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                      </ui:HttpClient.Cookies>
+                                      <ui:HttpClient.Headers>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json</InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="Authorization">[String.Format("Bearer {0}", authToken)]</InArgument>
+                                      </ui:HttpClient.Headers>
+                                      <ui:HttpClient.Parameters>
+                                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                      </ui:HttpClient.Parameters>
+                                      <ui:HttpClient.UrlSegments>
+                                        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                                      </ui:HttpClient.UrlSegments>
+                                    </ui:HttpClient>
+                                    <If Condition="[incidentStatusCode &gt;= 200 AndAlso incidentStatusCode &lt; 300]" DisplayName="If the incident was created successfully." sap2010:WorkflowViewState.IdRef="If_IncidentSuccess">
+                                      <If.Then>
+                                        <Assign DisplayName="Set incidentSuccess to True." sap2010:WorkflowViewState.IdRef="Assign_SuccessTrue">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Boolean">[incidentSuccess]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_RetryElse">
+                                          <Assign DisplayName="Increment retryCount." sap2010:WorkflowViewState.IdRef="Assign_RetryIncrement">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Int32">[retryCount]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Int32">[retryCount + 1]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:LogMessage DisplayName="Log warning for non-2xx status code." sap2010:WorkflowViewState.IdRef="LogMessage_RetryWarning" Message="[String.Format(&quot;POST request failed with status code {0} for file {1}. Retry attempt {2}.&quot;, incidentStatusCode, currentFile.Name, retryCount)]" />
+                                          <Delay DisplayName="Delay for 5 seconds before next retry." Duration="00:00:05" sap2010:WorkflowViewState.IdRef="Delay_Retry" />
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                </TryCatch.Try>
+                                <TryCatch.Catches>
+                                  <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch_Post">
+                                    <ActivityAction x:TypeArguments="s:Exception">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                      </ActivityAction.Argument>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_PostCatch" />
+                                    </ActivityAction>
+                                  </Catch>
+                                </TryCatch.Catches>
+                              </TryCatch>
+                            </Sequence>
+                          </ui:InterruptibleWhile.Body>
+                        </ui:InterruptibleWhile>
+                        <If Condition="[incidentSuccess = True]" DisplayName="Check if incident was successfully created after retries." sap2010:WorkflowViewState.IdRef="If_AfterRetry">
+                          <If.Then>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_SuccessBranch">
+                              <Assign DisplayName="Increment the created count." sap2010:WorkflowViewState.IdRef="Assign_CreatedCount">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[createdCount]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[createdCount + 1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:LogMessage DisplayName="Log the successful processing of the file." sap2010:WorkflowViewState.IdRef="LogMessage_Processed" Message="[String.Format(&quot;{0} - PROCESSED: {1}&quot;, Date.Now, currentFile.Name)]" />
+                              <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Append the processed file info to the processed log." FileName="C:\DHL_Incidents\processed_log.txt" sap2010:WorkflowViewState.IdRef="WriteTextFile_ProcessedLog" Text="[processedLog &amp; String.Format(&quot;{0}|{1:yyyy-MM-dd}{2}&quot;, currentFile.Name, Date.Now, Environment.NewLine)]" />
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_FailedBranch">
+                              <Assign DisplayName="Increment the failed count." sap2010:WorkflowViewState.IdRef="Assign_FailedCount">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[failedCount]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[failedCount + 1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:LogMessage DisplayName="Log that all 3 retries failed." sap2010:WorkflowViewState.IdRef="LogMessage_AllFailed" Message="[String.Format(&quot;All 3 retries failed for file {0}. Incident not created.&quot;, currentFile.Name)]" />
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_SkipBranch">
+                        <ui:LogMessage DisplayName="Log that this file is being skipped." sap2010:WorkflowViewState.IdRef="LogMessage_Skipped" Message="[String.Format(&quot;{0} - SKIPPED (already processed within last 14 days): {1}&quot;, Date.Now, currentFile.Name)]" />
+                        <Assign DisplayName="Increment the skipped count." sap2010:WorkflowViewState.IdRef="Assign_SkippedCount">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[skippedCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[skippedCount + 1]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Log the skipped file to the automation log." FileName="C:\DHL_Incidents\automation_log.txt" sap2010:WorkflowViewState.IdRef="WriteTextFile_AutomationLog" Text="[String.Format(&quot;{0} - SKIPPED: {1}{2}&quot;, Date.Now, currentFile.Name, Environment.NewLine)]" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch_FileException">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_FileCatch">
+                      <ui:LogMessage DisplayName="Log file processing error." sap2010:WorkflowViewState.IdRef="LogMessage_FileError" Message="[String.Format(&quot;ERROR processing file {0}: {1}&quot;, currentFile.Name, exception.Message)]" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <TryCatch DisplayName="Handle sending the summary email with error catching." sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="TryCatch_Email">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_EmailTry">
+          <Assign DisplayName="Construct the summary email body." sap2010:WorkflowViewState.IdRef="Assign_EmailBody">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[emailBody]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[String.Format("DHL Incident Automation Summary:" &amp; Environment.NewLine &amp; Environment.NewLine &amp; "Total Files Created : {0}" &amp; Environment.NewLine &amp; "Total Files Skipped : {1}" &amp; Environment.NewLine &amp; "Total Files Failed : {2}", createdCount, skippedCount, failedCount)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" Email="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" UseRichTextEditor="{x:Null}" Action="Forward" AttachmentInputMode="FilePaths" Body="[emailBody]" ConnectionMode="LegacyConfiguration" DisplayName="Send the summary email using SMTP." EnableSSL="True" From="slahhnan040@gmail.com" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="ujfyxqaiblzscgpb" Port="465" SecureConnection="SslOnConnect" Server="smtp.gmail.com" Subject="DHL Incident Automation Summary" To="hussein.h@graduate.utm.my" UseISConnection="False">
+            <ui:SendMail.AttachmentsBackup>
+              <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="{x:Null}">
+                <usau:BackupSlot.BackupValues>
+                  <scg:Dictionary x:TypeArguments="umame:AttachmentInputMode, scg:List(x:Object)" />
+                </usau:BackupSlot.BackupValues>
+              </usau:BackupSlot>
+            </ui:SendMail.AttachmentsBackup>
+            <ui:SendMail.ConnectionDetailsBackupSlot>
+              <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+                <usau:BackupSlot.BackupValues>
+                  <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                </usau:BackupSlot.BackupValues>
+              </usau:BackupSlot>
+            </ui:SendMail.ConnectionDetailsBackupSlot>
+            <ui:SendMail.Files>
+              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                <x:Null />
+              </scg:List>
+            </ui:SendMail.Files>
+          </ui:SendMail>
+          <ui:LogMessage DisplayName="Log that the summary email was sent successfully." sap2010:WorkflowViewState.IdRef="LogMessage_EmailSent" Level="Info" Message="[String.Format(&quot;Summary email sent successfully to hussein.h@graduate.utm.my (from slahhnan040@gmail.com) — Created: {0}, Skipped: {1}, Failed: {2}&quot;, createdCount, skippedCount, failedCount)]" />
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch_Email">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Catch - Exception" sap2010:WorkflowViewState.IdRef="Sequence_EmailCatch">
+              <ui:LogMessage DisplayName="Log email sending failure." sap2010:WorkflowViewState.IdRef="LogMessage_EmailFailed" Level="Warn" Message="[String.Format(&quot;Failed to send summary email: {0}&quot;, exception.Message)]" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Finally" sap2010:WorkflowViewState.IdRef="Sequence_2" />
+      </TryCatch.Finally>
+    </TryCatch>
+  </Sequence>
+</Activity>
